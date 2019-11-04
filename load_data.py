@@ -5,14 +5,21 @@ import time
 import requests
 
 
+#constants of file names and urls used in downloading data
 hdfs_folder_path = "/user/ppo208/project"
 temp_folder = "/tmp/ppo208/"
+years = ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018']
+months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ]
+base_url = 'https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_'
+
+#function that takes a local file and uploads it to hdfs
 def upload_file_to_hdfs(local_file_path, local_filename, hadoop_filename):
 	print("Uploading file to hdfs folder = "+hdfs_folder_path)
 	os.chdir(local_file_path)
 	os.system("hdfs dfs -put "+temp_folder+local_filename+" "+hdfs_folder_path)
 	os.system("hdfs dfs -mv "+hdfs_folder_path+"/"+local_filename+" "+hdfs_folder_path+"/"+hadoop_filename)
 
+#function that downloads a file from the link in chunks and stores it in a temp folder
 def download_file(url, local_filename):
 	response = requests.get(url, stream=True)
 	print("Downloading url "+url)
@@ -29,12 +36,26 @@ def download_file(url, local_filename):
 		fp.flush
 	fp.close()
 
+#function that takes a file and moves the data to a given hdfs file
 def process_link(url, hdfs_filename):
 	temp_filename = str(calendar.timegm(time.gmtime()))
 	local_filename = download_file(url, temp_folder+temp_filename)
 	upload_file_to_hdfs(temp_folder, temp_filename, hdfs_filename)
+	print("Successfully processed data in link "+url+" to hdfs ")
 
+#main routine
+def download_all_data():
+	os.system("hdfs dfs -rmr "+hdfs_folder_path)
+	os.system("hdfs dfs -mkdir "+hdfs_folder_path)
+
+	for year in years:
+		for month in months:
+			url = base_url+year+"-"+month+".csv"
+			hdfs_filename = year+"_"+month
+			process_link(url, hdfs_filename)
+
+			
 if __name__== "__main__":
-  process_link("https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2009-01.csv", "Jan_2009.csv")
+  download_all_data()
 
 
