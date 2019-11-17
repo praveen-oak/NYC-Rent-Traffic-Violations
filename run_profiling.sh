@@ -1,0 +1,8 @@
+pig -f data_profile_pickup_longitude.pig -param input_file='/user/ppo208/project/2009_01' -param output_file='/user/ppo208/project/2009_01_profile_pickup_longitude'
+pig -f data_profile_pickup_latitude.pig -param input_file='/user/ppo208/project/2009_01' -param output_file='/user/ppo208/project/2009_01_profile_pickup_latitude'
+pig -f data_profile_dropoff_longitude.pig -param input_file='/user/ppo208/project/2009_01' -param output_file='/user/ppo208/project/2009_01_profile_dropoff_longitude'
+pig -f data_profile_dropoff_latitude.pig -param input_file='/user/ppo208/project/2009_01' -param output_file='/user/ppo208/project/2009_01_profile_dropoff_latitude'
+pig -f data_profile_surcharge.pig -param input_file='/user/ppo208/project/2009_01' -param output_file='/user/ppo208/project/2009_01_profile_surcharge'
+pig -f data_profile_tip_amount.pig -param input_file='/user/ppo208/project/2009_01' -param output_file='/user/ppo208/project/2009_01_profile_tip_amount'
+pig -f data_profile_toll_amount.pig -param input_file='/user/ppo208/project/2009_01' -param output_file='/user/ppo208/project/2009_01_profile_toll_amount'
+pig -f data_profile_trip_distance.pig -param input_file='/user/ppo208/project/2009_01' -param output_file='/user/ppo208/project/2009_01_profile_trip_distance'
