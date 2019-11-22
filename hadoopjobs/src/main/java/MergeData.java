@@ -87,7 +87,7 @@ public class MergeData {
             if(rentData == null){
                 return null;
             }
-            int realIndex = index + 2;
+            int realIndex = index;
             if(rentData.length <= realIndex){
                 return null;
             }

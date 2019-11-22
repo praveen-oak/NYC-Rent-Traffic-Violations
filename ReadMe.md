@@ -1,4 +1,5 @@
 
+To run spark locally : spark2-shell --master local
 Project Structure:
 load_data.py --> Python code that pulls data from public datasource and loads it into hdfs
 clean_data.py --> Python script that calls pig script used to clean and project data

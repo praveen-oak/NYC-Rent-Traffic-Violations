@@ -8,6 +8,7 @@ from constants import years
 from constants import hdfs_folder_path
 from constants import temp_folder
 from constants import base_url
+import subprocess
 
 #function that takes a local file and uploads it to hdfs
 def upload_file_to_hdfs(local_file_path, local_filename, hadoop_filename):
@@ -44,11 +45,17 @@ def process_link(url, hdfs_filename):
 
 #main routine
 def download_all_data():
-	os.system("hdfs dfs -rmr "+hdfs_folder_path)
-	os.system("hdfs dfs -mkdir "+hdfs_folder_path)
+	# os.system("hdfs dfs -rmr "+hdfs_folder_path)
+	# os.system("hdfs dfs -mkdir "+hdfs_folder_path)
 
 	for year in years:
 		for month in months:
+			raw_folder_path = hdfs_folder_path+year+"_"+month
+			hdfs_file_check = "hdfs dfs -test -e "+raw_folder_path+"; echo $?"
+			is_present = int(subprocess.Popen(hdfs_file_check,shell=True,stdout=subprocess.PIPE).communicate()[0][0])
+			if is_present == 0:
+				continue
+			print("running for "+year+"_"+month)
 			url = base_url+year+"-"+month+".csv"
 			hdfs_filename = year+"_"+month
 			process_link(url, hdfs_filename)
