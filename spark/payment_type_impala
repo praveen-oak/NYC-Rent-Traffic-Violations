@@ -1,0 +1,38 @@
+drop table IF EXISTS ppo208.final_data;
+create table IF NOT EXISTS ppo208.final_data (
+trip_distance FLOAT,
+pickup_location INT,
+dropoff_location INT,
+payment_type INT,
+fare_amount FLOAT,
+surcharge FLOAT,
+tip_amount FLOAT,
+tolls_amount FLOAT,
+total_amount FLOAT,
+pickup_rent FLOAT,
+dropoff_rent FLOAT,
+pickup_decile INT,
+dropoff_decile INT,
+tip_percent FLOAT
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LOCATION "hdfs:///user/ppo208/project/impala/result";
+
+
+select count(*), dropoff_decile from ppo208.final_data where tip_percent = 0 group by dropoff_decile;
+select count(*), pickup_decile from ppo208.final_data where tip_percent = 0 group by pickup_decile;
+
+
+select count(tip_percent), pickup_decile from ppo208.final_data where tip_percent < 0.7 group by pickup_decile;
+select count(tip_percent), dropoff_decile from ppo208.final_data where tip_percent < 0.7 group by dropoff_decile;
+
+select sum(tip_percent), pickup_decile from ppo208.final_data where tip_percent < 0.7 group by pickup_decile;
+select sum(tip_percent), dropoff_decile from ppo208.final_data where tip_percent < 0.7 group by dropoff_decile;
+
+
+
+select count(*), pickup_decile from ppo208.final_data where tip_percent < 0.7 and payment_type = 1 group by pickup_decile;
+
+select count(*), pickup_decile from ppo208.final_data where tip_percent < 0.7 group by pickup_decile;
+
+select count(*), dropoff_decile from ppo208.final_data where tip_percent < 0.7 and payment_type = 1 group by dropoff_decile;
+
+select count(*), dropoff_decile from ppo208.final_data where tip_percent < 0.7 group by dropoff_decile;

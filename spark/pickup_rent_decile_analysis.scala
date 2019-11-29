@@ -17,14 +17,14 @@ df = df.withColumn("tolls_amount", 'tolls_amount cast "float")
 df = df.withColumn("pickup_rent", 'pickup_rent cast "float")
 df = df.withColumn("dropoff_rent", 'dropoff_rent cast "float")
 df = df.withColumn("payment_type", 'payment_type cast "int")
-val dropoff_tip_df = df.select("dropoff_rent", "tip_amount", "fare_amount")
+val dropoff_tip_df = df.select("pickup_rent", "tip_amount", "fare_amount")
 val dropoff_with_percent_df = dropoff_tip_df.withColumn("tip_percent", dropoff_tip_df("tip_amount") / dropoff_tip_df("fare_amount")).where("tip_percent < 0.7")
-val rent_deciles = dropoff_tip_df.stat.approxQuantile("dropoff_rent",Array(0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0),0.0).distinct;
+val rent_deciles = dropoff_tip_df.stat.approxQuantile("pickup_rent",Array(0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0),0.0).distinct;
 
-val bucketizer = new Bucketizer().setInputCol("dropoff_rent").setOutputCol("rent_decile").setSplits(rent_deciles)
+val bucketizer = new Bucketizer().setInputCol("pickup_rent").setOutputCol("rent_decile").setSplits(rent_deciles)
 val binned_df = bucketizer.transform(dropoff_with_percent_df)
 val tip_percent_results = binned_df.groupBy("rent_decile").agg(avg("tip_percent"))
 val fare_amount_results = binned_df.groupBy("rent_decile").agg(avg("fare_amount"))
 
-tip_percent_results.coalesce(1).write.mode("overwrite").csv("/user/ppo208/project/results_data/rent_tip_co_relation/tip_percent/")
-fare_amount_results.coalesce(1).write.mode("overwrite").csv("/user/ppo208/project/results_data/rent_tip_co_relation/fare_amount/")
+tip_percent_results.coalesce(1).write.mode("overwrite").csv("/user/ppo208/project/results_data/pickup_rent/tip_percent/")
+fare_amount_results.coalesce(1).write.mode("overwrite").csv("/user/ppo208/project/results_data/pickup_rent/fare_amount/")
