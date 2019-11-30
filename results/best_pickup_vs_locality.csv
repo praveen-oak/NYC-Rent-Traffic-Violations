@@ -1,0 +1,15 @@
+"Best pickup tip
+",Locality ID,Avg(Pickup rent),Locality Percentile,Locality Name
+17.3,138,1745,0,La Guardia(Queens)
+15.9,125,"No available data
+",0,Hudson Sq(Manhattan)
+15.7,234,"No available data
+",0,"Union Sq(Manhattan)
+"
+15.6,249,3739,6,West Village(Manhattan)
+15.6,52,3068,4,Cobble Hill(Brooklyn)
+15.5,90,4624,8,Flatiron(Manhattan)
+15.5,107,3512,6,Gramercy(Manhattan)
+15,13,4376,8,Battery Park(Manhattan)
+15.3,113,3704,8,Greenwich Village North(Manhattan)
+15.2,158,3737,6,Meatpacking district(Manhattan)
