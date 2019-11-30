@@ -4,10 +4,13 @@ from constants import years
 import subprocess
 from constants import hdfs_cleaned_data_folder_path, hdfs_merged_data_folder_path, hdfs_merged_csv_folder_path
 
+
+#scipt to clean the dataset loaded from the internet and clean and merge the data for different years
+
 #main routine
 def merge_all_data():
 
-	os.chdir("../hadoopjobs/src/main/java/")
+	os.chdir("../hadoopjobs/")
 	os.system("./runner.sh")
 	temp = 0
 	for year in years:
@@ -55,4 +58,4 @@ def merge_hadoop_files():
 
 if __name__== "__main__":
   merge_all_data()
-  # merge_hadoop_files()
+  merge_hadoop_files()

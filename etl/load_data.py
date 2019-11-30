@@ -10,6 +10,8 @@ from constants import temp_folder
 from constants import base_url
 import subprocess
 
+#scipt to take the taxi dataset for the last 10 years from the web and upload to hdfs
+
 #function that takes a local file and uploads it to hdfs
 def upload_file_to_hdfs(local_file_path, local_filename, hadoop_filename):
 	print("Uploading file to hdfs folder = "+hdfs_folder_path)

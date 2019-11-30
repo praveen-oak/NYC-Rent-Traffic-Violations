@@ -1,12 +1,12 @@
+/* spark script to get the decile value for pickup and dropoff rent*/
+
 import org.apache.spark.ml.feature.StringIndexer
 import org.apache.spark.sql.functions._
 import org.apache.spark.ml.feature.Bucketizer
 
 val args = sc.getConf.get("spark.driver.args").split("\\s+")
-val month = args(1)
-val year = args(0)
-val input_path = "/user/ppo208/project/final_data/"+year+"_"+month+".csv"
-var df = spark.read.format("csv").option("dropInvalid", true).load("/user/ppo208/project/final_data.csv").toDF("trip_distance", "pickup_location",
+val file_path = args(0)
+var df = spark.read.format("csv").option("dropInvalid", true).load(file_path).toDF("trip_distance", "pickup_location",
 	"dropoff_location", "payment_type", "fare_amount", "surcharge", "tip_amount", "tolls_amount", "total_amount", "pickup_rent", "dropoff_rent").limit(100000)
 
 df = df.withColumn("trip_distance", 'trip_distance cast "float")
