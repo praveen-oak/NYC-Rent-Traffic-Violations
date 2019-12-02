@@ -1,0 +1,10 @@
+use ak7380;
+drop view manhattan;
+drop view bronx;
+drop view brooklyn;
+drop view queens;
+drop view staten_island;
+drop view taxi_count;
+drop view violations_count;
+drop table taxi;
+drop table violations;
