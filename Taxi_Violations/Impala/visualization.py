@@ -9,12 +9,11 @@ def plot(borough):
     x_scaled = scaler.fit_transform(x)
     df[['TaxiCount']] = pd.Series(x_scaled[:,0])
     df[['ViolationsCount']] = pd.Series(x_scaled[:,1])
-    #plt.figure(figsize=(15,10))
+    plt.figure(figsize=(7,7))
     plt.plot(df['Date'], df['TaxiCount'], label='TaxiCount')
     plt.plot(df['Date'], df['ViolationsCount'], label='ViolationsCount')
     plt.xticks(rotation=90)
     plt.legend()
-    plt.show()
     plt.savefig(borough + '.png')
     plt.close()
 

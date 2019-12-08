@@ -5,6 +5,6 @@ chmod +x runner.sh
 ```
 For visualizations, please run
 ```
-python visualizations.py
+python visualization.py
 ```
-This will use the csv's to generate and save plots on the system. 
+This will use the csv's to generate and save plots on the system.
