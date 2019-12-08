@@ -33,12 +33,17 @@ https://github.com/praveen-oak/rtbd
 * results - .csv files of results, which are manually created after looking at data from impala scripts and formatting them
 
 All data for this section is present in
+
 /user/ppo208/project/
 
 Downloaded data from internet - /user/ppo208/project/raw_data
+
 After cleaning - /user/ppo208/project/clean_data
+
 After merging individual years - /user/ppo208/project/merge_data
+
 After merging all years and running mapreduce jobs - /user/ppo208/project/impala/final_data.csv
+
 Impala loading and results - /user/ppo208/project/impala
 
 ### Taxi Data and Traffic Violations
@@ -73,14 +78,21 @@ Impala loading and results - /user/ppo208/project/impala
 	* *.txt -> Corresponding text file outputs for each borough
 
 All data for this section is present in
+
 /user/ak7380/
+
 /scratch/ak7380/ -> Final Output
 
 Taxi Raw Data - /user/ak7380/TaxiData
+
 Taxi Cleaned Data - /user/ak7380/TaxiDataOutput
+
 Violations Raw Data - /user/ak7380/Violations
+
 Violations Cleaned Data - /user/ak7380/ViolationsOutput
+
 Final Impala Data used for Spark - /user/ak7380/SparkData
+
 Final Correlation Outputs - /scratch/ak7380/
 
 ## Running the project
@@ -156,7 +168,7 @@ tolls_amount:float,
 total_amount:float
 ```
 
-* Data schema used:
+* Data schema used
 
 ```
 trip_distance:float,
@@ -177,19 +189,21 @@ dropoff_decile:int
 
 ### Taxi Data and Traffic Violations
 
-* Cleaned Data Schema:
+* Cleaned Data Schema
+
 	** Taxi Data
 	```
 	date:string,
-	borough:string,
+	borough:string
 	```
+
 	** Traffic Violations Data
 	```
 	date:string,
 	borough:string
 	```
 
-* Final Schema (used for Spark, for each borough):
+* Final Schema (used for Spark, for each borough)
 	```
 	date:string,
 	borough:string,
