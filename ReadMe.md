@@ -1,7 +1,7 @@
 # Analysing New York Taxi Data to Determine Affluence and Road Safety of New York Neighbourhoods
 
 Team Members -
-* Praveen oak
+* Praveen Oak
 * Alankrith Krishnan
 
 Project is available on github. Access is private, but I can grant based on request.
