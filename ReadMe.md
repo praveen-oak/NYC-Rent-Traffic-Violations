@@ -191,13 +191,13 @@ dropoff_decile:int
 
 * Cleaned Data Schema
 
-	** Taxi Data
+	* Taxi Data
 	```
 	date:string,
 	borough:string
 	```
 
-	** Traffic Violations Data
+	* Traffic Violations Data
 	```
 	date:string,
 	borough:string
